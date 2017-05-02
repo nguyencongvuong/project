@@ -15,8 +15,9 @@ class CreateTaxonomyTable extends Migration
     {
         Schema::create('taxonomy_news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',255);
+            $table->string('title',255);
             $table->string('slug',255);
+            $table->string('description',255)->nullable();
             $table->integer('parent');
             $table->timestamps();
         });
