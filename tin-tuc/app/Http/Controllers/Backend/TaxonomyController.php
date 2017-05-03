@@ -1,33 +1,44 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\TaxonomyNews;
 use App\News;
-class CategoryController extends Controller
+class TaxonomyController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function datas(){
+        $datas['category']=TaxonomyNews::where('parent',0)->orderby('id','desc')->get(
+            );
+        foreach ($datas['category'] as $key => $value) {
+            $datas['category'][$key]=$this->getdata($value);
+            $datas['category'][$key]['children']=$this->getchildren($datas['category'][$key]->id);
+        }
+        return $datas;
+
+    }
+      public function getchildren($children){
+        $children=TaxonomyNews::where('parent',$children)->get();
+        return $children;
+    }
+    public function getdata($catagories){
+        $catagories=TaxonomyNews::select()->find($catagories->id);
+        return $catagories;
+    }
     public function index()
     {
         //
-        $catagories['category']=News::orderby('id','desc')->get();
-        $datas=[];
-      
-        foreach ($catagories['category'] as $key => $value) {
-            $datas['category'][$key]=$this->getdata($value);
-           
-        }
+        $datas=$this->datas();
         return view('backend.category.create',['datas'=>$datas]);
     }
-    public function getdata($catagories){
-        $catagories=TaxonomyNews::select('id','title','slug')->find($catagories->chuyenmuc);
-        return $catagories;
-    }
+  
+  
     /**
      * Show the form for creating a new resource.
      *
@@ -100,7 +111,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datas=$this->datas();
+        $category=TaxonomyNews::where('id',$id)->first();
+        return view('backend.category.edit')->with(['datas'=>$datas,'category'=>$category]);
     }
 
     /**
@@ -123,6 +136,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        TaxonomyNews::where('id',$id)->delete();
+        return redirect()->back();
+
         //
     }
 }

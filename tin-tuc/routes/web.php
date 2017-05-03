@@ -19,7 +19,7 @@ Route::group(['prefix'=>'/'],function(){
 		return view('fontend.home');
 	});
 });
-Route::resource('admin/category','CategoryController');
+Route::resource('admin/category','Backend\TaxonomyController');
 Route::group(['middleware'=>'auth'],function(){
 	Route::group(['prefix'=>'admin'],function(){
 		Route::get('/','CheckController@index');
