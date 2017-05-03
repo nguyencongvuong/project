@@ -54,7 +54,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="form_component.html">Show</a></li>
-                          <li><a  href="<?php echo e(url('admin/category/create')); ?>">News</a></li>
+                          <li><a  href="<?php echo e(route('category.index')); ?>">News</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

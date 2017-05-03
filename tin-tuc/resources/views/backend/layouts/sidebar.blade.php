@@ -54,7 +54,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="form_component.html">Show</a></li>
-                          <li><a  href="{{url('admin/category/create')}}">News</a></li>
+                          <li><a  href="{{route('category.index')}}">News</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
