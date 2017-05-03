@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TaxonomyNews;
+use App\News;
 class CategoryController extends Controller
 {
     /**
@@ -14,15 +15,19 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $catagories=TaxonomyNews::where('parent',0)->orderby('id','desc')->get();
+        $catagories['category']=News::orderby('id','desc')->get();
         $datas=[];
-        foreach ($catagories as $key => $value) {
-            $datas[$key]['id']=$value->id;
-            $datas[$key]['title']=$value->title;
+      
+        foreach ($catagories['category'] as $key => $value) {
+            $datas['category'][$key]=$this->getdata($value);
+           
         }
         return view('backend.category.create',['datas'=>$datas]);
     }
-
+    public function getdata($catagories){
+        $catagories=TaxonomyNews::select('id','title','slug')->find($catagories->chuyenmuc);
+        return $catagories;
+    }
     /**
      * Show the form for creating a new resource.
      *

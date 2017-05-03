@@ -17,12 +17,16 @@ $backend=asset('backend');
 		<input type="text" name="title" class='col-xs-12'><br>
 		<label for="">Description</label>
 		<input type="text" name="description" class='col-xs-12'><br>
-		<select name="parent">
-			<option value="0">Parent</option>
-			<?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-			<option value="<?php echo e($value['id']); ?>"><?php echo e($value['title']); ?></option>
-			<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-		</select><br>
+		<?php 
+		echo "<pre>";
+		// var_dump($datas['category']['0']);
+		$key=0;
+		foreach($datas['category'] as $key => $value){
+			echo $datas['category'][$key]->title."<br>";
+			$key++;
+		}
+		?>
+
 		<input type="submit" name="sb" value="Thêm Mới">
 	</form>
 		
