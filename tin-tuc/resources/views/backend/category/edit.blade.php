@@ -36,7 +36,7 @@ $(document).ready(function(){
 						// var_dump($parent);
 						?>
 						<select name="parent">
-							<option>Parent</option>
+							<option value="0">Parent</option>
 							@foreach($datas['category'] as $value)
 								@if($value->id!=$id)
 								<option style="font-weight: bold;font-size: 15px" value="{{$value->id}}" @if($value->id==$category['parent']) selected @endif >{{$value->title}}</option>
