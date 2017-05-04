@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\TaxonomyNews;
@@ -34,8 +34,7 @@ class TaxonomyController extends Controller
     public function index()
     {
         //
-        $datas=$this->datas();
-        return view('backend.category.create',['datas'=>$datas]);
+        
     }
   
   
@@ -46,7 +45,8 @@ class TaxonomyController extends Controller
      */
     public function create()
     {
-        
+        $datas=$this->datas();
+        return view('backend.category.create',['datas'=>$datas]);
         
     }
 
@@ -58,30 +58,21 @@ class TaxonomyController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $string=$request->title;
-        function convert($string){
-        $a=['Á','Ả','À','Ã','Ạ','Ă','Ắ','Ằ','Ẳ','Ặ','Ẵ','Â','Ấ','Ầ','Ẩ','Ậ','Ẫ','á','à','ả','ã','ạ','ă','ằ','ẳ','ắ','ẵ','ặ','â','ầ','ẩ','ậ','ẩ','ấ','ẫ'];
-        $d=['Đ','đ'];
-        $u=['Ú','Ủ','Ù','Ũ','Ụ','Ư','Ứ','Ừ','Ự','Ữ','Ử','ú','ủ','ù','ụ','ũ','ư','ứ','ừ','ử','ự','ữ'];
-        $o=['Ơ','Ớ','Ở','Ờ','Ỡ','Ợ','ơ','ớ','ở','ờ','ỡ','ợ','Ó','Ỏ','Ò','Ọ','Õ','ó','ò','ỏ','ọ','õ','Ô','Ố','Ổ','Ồ','Ộ','ô','ộ','ồ','ố','ổ','ỗ'];
-        $e=['É','Ẻ','È','Ẹ','Ẽ','é','ẻ','è','ẹ','ẽ','Ê','Ế','Ể','Ề','Ệ','Ễ','ê','ế','ể','ề','ệ','ễ'];
-        $y=['Ý','Ỷ','Ỳ','Ỹ','Ỵ','ý','ỷ','ỳ','ỵ','ỹ'];
-        $i=['Í','Ỉ','Ì','Ị','Ĩ','í','ì','ỉ','ĩ','ị'];
-        $s=['%','"',"'",'--','---','- ',' -',' - ','/',',','%20'];
-        $space=['  ','   ',''];
-        $convert=str_replace($a,'a',$string);
-        $convert=str_replace($d,'d',$convert);
-        $convert=str_replace($o,'o',$convert);
-        $convert=str_replace($e,'e',$convert);
-        $convert=str_replace($u,'u',$convert);
-        $convert=str_replace($i,'i',$convert);
-        $convert=str_replace($y,'y',$convert);
-        $convert=str_replace($s,'-',$convert);
-        $convert=str_replace($space,' ',$convert);
-        return strtolower($convert);
+        $rules= [
+        'title' => 'required|max:255',
+        ];
+        $messages = [
+        'title.required'=> 'Bạn Không Được Để Trống',
+        'size'    => 'The :attribute must be exactly :size.',
+        'between' => 'The :attribute must be between :min - :max.',
+        'in'      => 'The :attribute must be one of the following types: :values',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-        $con=convert($string);
+        $string=$request->title;
+        $con=\func::ConvertString($string);
         $slug=str_slug($con,'-');
         $taxonomy=new TaxonomyNews();
         $taxonomy->title=$request->title;
@@ -101,6 +92,7 @@ class TaxonomyController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -113,7 +105,7 @@ class TaxonomyController extends Controller
     {
         $datas=$this->datas();
         $category=TaxonomyNews::where('id',$id)->first();
-        return view('backend.category.edit')->with(['datas'=>$datas,'category'=>$category]);
+        return view('backend.category.edit')->with(['id'=>$id,'datas'=>$datas,'category'=>$category]);
     }
 
     /**
@@ -125,7 +117,16 @@ class TaxonomyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $string=$request->input('title');
+        $con=\func::ConvertString($string);
+        $slug=str_slug($con,'-');
+        $update=TaxonomyNews::find($id);
+        $update->parent=$request->parent;
+        $update->title=$request->input('title');
+        $update->slug=$slug;
+        $update->description=$request->input('description');
+        $update->save();
+        return redirect()->route('category.create');
     }
 
     /**

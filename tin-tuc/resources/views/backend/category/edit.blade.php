@@ -15,14 +15,16 @@ $(document).ready(function(){
           	<h1>Categories</h1>
               <div class="row">
                   <div class="col-lg-7 main-chart">
-					<form action="{{route('category.store')}}" method="post" accept-charset="utf-8">
+					<form action="{{url('')}}/admin/category/{{$id}}" method="post" accept-charset="utf-8">
 					{{csrf_field()}}
 					
 						<label for="">Title</label>
+
 						<input type="text" name="title" class='col-xs-12' value='{{$category['title']}}'><br>
 						<label for="">Description</label>
 						<input type="text" name="description" value="{{$category['description']}}" class='col-xs-12'><br>
-					
+						<input type="hidden" name="_method" value="PUT">
+    					
 							<?php 
 						// echo "<pre>";
 						// var_dump($datas['category'][0]);
@@ -36,8 +38,9 @@ $(document).ready(function(){
 						<select name="parent">
 							<option>Parent</option>
 							@foreach($datas['category'] as $value)
+								@if($value->id!=$id)
 								<option style="font-weight: bold;font-size: 15px" value="{{$value->id}}" @if($value->id==$category['parent']) selected @endif >{{$value->title}}</option>
-									
+								@endif
 							@endforeach
 							
 						</select><br>

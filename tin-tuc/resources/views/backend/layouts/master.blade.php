@@ -1,4 +1,4 @@
-<?php
+ <?php
 $backend=asset('backend');
 ?>
 <!DOCTYPE html>
@@ -50,11 +50,6 @@ $backend=asset('backend');
       }
       ul li{
         display: block;
-      }
-      span{
-        display: block;
-        width:50px;
-        float:right;
       }
     </style>
   </head>

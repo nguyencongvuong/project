@@ -1,4 +1,4 @@
-<?php
+ <?php
 $backend=asset('backend');
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ $backend=asset('backend');
     <!-- Custom styles for this template -->
     <link href="<?php echo e($backend); ?>/css/style.css" rel="stylesheet">
     <link href="<?php echo e($backend); ?>/css/style-responsive.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="<?php echo e($backend); ?>/js/chart-master/Chart.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,6 +34,22 @@ $backend=asset('backend');
     <style type="text/css" media="screen">
       .wrapper{
         min-height: 800px;
+      }
+      .delete{
+        border:none;
+        background: none;
+        cursor: pointer;
+        color:#0358B8;
+       
+      }
+      .edit{
+        margin-left: 5px;
+      }
+      select,input.delete{
+        padding: 5px;
+      }
+      ul li{
+        display: block;
       }
     </style>
   </head>
