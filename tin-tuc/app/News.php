@@ -8,4 +8,5 @@ class News extends Model
 {
     protected $table='news';
     protected $primarykey='id';
+    
 }

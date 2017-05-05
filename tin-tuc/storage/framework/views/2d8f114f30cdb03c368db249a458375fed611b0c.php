@@ -66,84 +66,41 @@ $(document).ready(function(){
 				<?php $i=0;
 
 				?>
-				<?php $__currentLoopData = $datas['category']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-					<li >
-					<div class='col-lg-6'><?php echo e($value['title']); ?></div>
-						<span class='col-lg-3'>
-								<a href="category/<?php echo e($value->id); ?>/edit" title="" class='edit '><i class="fa fa-pencil" aria-hidden="true"></i></a>
-						</span>
-						<form class='form-del col-lg-3' action="/admin/category/<?php echo e($value->id); ?>" method="POST">
-    						<input type="hidden" name="_method" value="DELETE">
-    						<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-    					
-    						<input class='delete' type="submit" onclick="return(confirm('Bạn có chắc muốn xóa'))" value='X'>
-    						
-    						</form>
+				<?php echo \Modules::SideBar(); ?>
 
-						<ul>
-							
-							<?php $__currentLoopData = $value['children']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-							
-							<li class='col-lg-6'><?php echo e($children->title); ?>
-
-							
-							
-							<!-- <button class='btn-delete' onclick="return(confirm('Bạn có chắc muốn xóa'))" type="submit" form="delete" value=""><i class="fa fa-trash-o" aria-hidden="true"></i></button> -->
-							
-							</li>
-
-							<span class='col-lg-3'>
-								<a href="category/<?php echo e($children->id); ?>/edit" title="" class='edit '><i class="fa fa-pencil" aria-hidden="true"></i></a>
-							</span>
-							
-							<form class='form-del' class='col-lg-3' action="/admin/category/<?php echo e($children->id); ?>" method="POST">
-    						<input type="hidden" name="_method" value="DELETE">
-    						<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-    					
-    						<input class='delete' type="submit" onclick="return(confirm('Bạn có chắc muốn xóa'))" value='X'>
-    						
-    						</form>
-							
-							
-							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-						</ul>
-					</li>
-				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-				</ul>
 			</div>
 			<?php
 			
-			echo '<pre>';
-			$categories=array(
-				0=>array(
-				'id'=>1,
-				'title'=>'Tin-Tuc',
-				'parent_id'=>0,
-				),
-				1=>array(
-				'id'=>2,
-				'title'=>'Bong-Da',
-				'parent_id'=>1,
-				),
-				2=>array(
-				'id'=>3,
-				'title'=>'Bong-Da-VN',
-				'parent_id'=>2,
-				),
-				3=>array(
-				'id'=>4,
-				'title'=>'JAV',
-				'parent_id'=>0,
-				),
-				4=>array(
-				'id'=>4,
-				'title'=>'Điền Kinh',
-				'parent_id'=>1,
-				),
-				);
+			// echo '<pre>';
+			// $categories=array(
+			// 	0=>array(
+			// 	'id'=>1,
+			// 	'title'=>'Tin-Tuc',
+			// 	'parent_id'=>0,
+			// 	),
+			// 	1=>array(
+			// 	'id'=>2,
+			// 	'title'=>'Bong-Da',
+			// 	'parent_id'=>1,
+			// 	),
+			// 	2=>array(
+			// 	'id'=>3,
+			// 	'title'=>'Bong-Da-VN',
+			// 	'parent_id'=>2,
+			// 	),
+			// 	3=>array(
+			// 	'id'=>4,
+			// 	'title'=>'JAV',
+			// 	'parent_id'=>0,
+			// 	),
+			// 	4=>array(
+			// 	'id'=>4,
+			// 	'title'=>'Điền Kinh',
+			// 	'parent_id'=>1,
+			// 	),
+			// 	);
 			
-
-
+			
 				// foreach($array as $key=>$value){
 				// 	 $value['parent'];
 				// 	 if($value['parent']==0){
@@ -160,47 +117,15 @@ $(document).ready(function(){
 				// var_dump($parents);
 
 				// BƯỚC 2: HÀM ĐỆ QUY HIỂN THỊ CATEGORIES
-function showCategories($categories, $parent_id = 0, $char = '', $stt = 0)
-{
-    // BƯỚC 2.1: LẤY DANH SÁCH CATE CON
-    $cate_child = array();
-    foreach ($categories as $key => $item)
-    {
-        // Nếu là chuyên mục con thì hiển thị
-        if ($item['parent_id'] == $parent_id)
-        {
-            $cate_child[] = $item;
-            unset($categories[$key]);
-        }
-    }
-     
-    // BƯỚC 2.2: HIỂN THỊ DANH SÁCH CHUYÊN MỤC CON NẾU CÓ
-    if ($cate_child)
-    {
-        if ($stt == 0){
-            // là cấp 1
-        }
-        else if ($stt == 1){
-            // là cấp 2
-        }
-        else if ($stt == 2){
-            // là cấp 3
-        }
-         
-        echo '<ul>';
-        foreach ($cate_child as $key => $item)
-        {
-            // Hiển thị tiêu đề chuyên mục
-            echo '<li>'.$item['title'];
-            // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
-            showCategories($categories, $item['id'], $char.'|---', $stt++);
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
-}
-		echo showCategories($categories);
-	
+			// <i class="fa fa-pencil " style="float:right;margin-right: 10px;" aria-hidden="true"></i>
+   //          <form class='form-del' style="float: right;" class='col-lg-2' action="/admin/category/{{$item['id']}}" method="POST">
+   //  						<input type="hidden" name="_method" value="DELETE">
+   //  						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    					
+   //  						<input class='delete' type="submit" onclick="return(confirm('Bạn có chắc muốn xóa'))" value='X'>
+    						
+   //  						</form>
+
 			?>
 
 </div>

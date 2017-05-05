@@ -36,7 +36,7 @@
                           <li><a  href="todo_list.html">Todo List</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
+                  <!-- <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Extra Pages</span>
@@ -46,7 +46,19 @@
                           <li><a  href="login.html">Login</a></li>
                           <li><a  href="lock_screen.html">Lock Screen</a></li>
                       </ul>
+                  </li> -->
+                   <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Bài Viết</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="blank.html">Show</a></li>
+                          <li><a  href="<?php echo e(route('news.create')); ?>">Thêm Mới</a></li>
+                          <!-- <li><a  href="lock_screen.html">Lock Screen</a></li> -->
+                      </ul>
                   </li>
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
@@ -54,7 +66,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="form_component.html">Show</a></li>
-                          <li><a  href="<?php echo e(route('category.index')); ?>">News</a></li>
+                          <li><a  href="<?php echo e(route('category.create')); ?>">New Category</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

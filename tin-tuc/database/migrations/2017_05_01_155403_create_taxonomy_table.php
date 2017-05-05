@@ -19,6 +19,7 @@ class CreateTaxonomyTable extends Migration
             $table->string('slug',255);
             $table->string('description',255)->nullable();
             $table->integer('parent');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
