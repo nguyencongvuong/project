@@ -7,7 +7,7 @@
                   <div class="col-md-12">
                       <div class="content-panel">
                           <table class="table table-striped table-advance table-hover">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Advanced Table</h4>
+	                  	  	  @if(session('news'))<div class='btn alert-success'><i class="fa fa-angle-right"></i> {{session('news')}} </div>@endif
 	                  	  	  <hr>
                               <thead>
                               <tr>
@@ -19,16 +19,34 @@
                               </tr>
                               </thead>
                               <tbody>
-                              @foreach($datas as $value)
+                              <?php
+                              $datas= json_decode($datas,true);
+                              ?>
+                              @foreach($datas as $key=>$value)
                               <tr>
                                   <td><a href="basic_table.html#">{{$value['tieude']}}</a></td>
                                   <td class="hidden-phone">{{$value['mota']}}</td>
-                                  <td>{{$value['chuyenmuc']}} </td>
-                                  <td><span class="label label-info label-mini">Due</span></td>
+                                  <td><?php echo ($value['category'][0]['title'])?> </td>
+                                  <td>@if($value['status']==1)<span class="label label-info label-mini">publish</span>
+                                  @elseif($value['status']==2)
+                                  	<span class="label label-danger">Draft</span>
+									@else
+									<span class="label label-warning ">waiting</span>
+                                  @endif</td>
                                   <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                  <form id='edit' action='' method='get'>
+                                  {{csrf_field()}}
+                                  	
+                                  </form>
+                                  <form id='delete' action='{{url("")}}/admin/news/<?php echo $value["id"];?>' method='post'>
+                                  {{csrf_field()}}
+                                  		<input type='hidden' name="_method" value="delete"/>
+                                  </form>
+                                 
+                                      <button class="btn btn-success btn-xs" ><i class="fa fa-check"></i></button>
+                                      <button class="btn btn-primary btn-xs" formaction='{{url("")}}/admin/news/<?php echo $value["id"];?>/edit' form='edit'><i class="fa fa-pencil"></i></button>
+                                      <button class="btn btn-danger btn-xs" form='delete' 
+                                      onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr>
                               @endforeach

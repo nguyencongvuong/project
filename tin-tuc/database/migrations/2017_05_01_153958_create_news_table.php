@@ -20,6 +20,7 @@ class CreateNewsTable extends Migration
             $table->text('mota');
             $table->longtext('noidung');
             $table->string('chuyenmuc',255);
+            $table->integer('status');
             $table->timestamps();
         });
     }
