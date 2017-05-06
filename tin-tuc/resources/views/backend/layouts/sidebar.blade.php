@@ -53,7 +53,7 @@
                           <span>Bài Viết</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="blank.html">Show</a></li>
+                          <li><a  href="{{route('news.index')}}">Show</a></li>
                           <li><a  href="{{route('news.create')}}">Thêm Mới</a></li>
                           <!-- <li><a  href="lock_screen.html">Lock Screen</a></li> -->
                       </ul>

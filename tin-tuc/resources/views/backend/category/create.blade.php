@@ -67,62 +67,6 @@ $(document).ready(function(){
 				{!!\Modules::SideBar()!!}
 			</div>
 			<?php
-			
-			// echo '<pre>';
-			// $categories=array(
-			// 	0=>array(
-			// 	'id'=>1,
-			// 	'title'=>'Tin-Tuc',
-			// 	'parent_id'=>0,
-			// 	),
-			// 	1=>array(
-			// 	'id'=>2,
-			// 	'title'=>'Bong-Da',
-			// 	'parent_id'=>1,
-			// 	),
-			// 	2=>array(
-			// 	'id'=>3,
-			// 	'title'=>'Bong-Da-VN',
-			// 	'parent_id'=>2,
-			// 	),
-			// 	3=>array(
-			// 	'id'=>4,
-			// 	'title'=>'JAV',
-			// 	'parent_id'=>0,
-			// 	),
-			// 	4=>array(
-			// 	'id'=>4,
-			// 	'title'=>'Điền Kinh',
-			// 	'parent_id'=>1,
-			// 	),
-			// 	);
-			
-			
-				// foreach($array as $key=>$value){
-				// 	 $value['parent'];
-				// 	 if($value['parent']==0){
-				// 	 	$parents[]=$value;
-				// 	 	unset($array[$key]);
-				// 	 	echo "<ul><li>".$value['name'].'<br>';
-				// 	 }
-				// 	 foreach($parents as $parent){
-				// 	 	if($parent['id']==$value['parent']){
-				// 	 		echo "<ul><li>".$value['name']."<li></ul></li></ul>";
-				// 	 	}
-				// 	 }
-				// }
-				// var_dump($parents);
-
-				// BƯỚC 2: HÀM ĐỆ QUY HIỂN THỊ CATEGORIES
-			// <i class="fa fa-pencil " style="float:right;margin-right: 10px;" aria-hidden="true"></i>
-   //          <form class='form-del' style="float: right;" class='col-lg-2' action="/admin/category/{{$item['id']}}" method="POST">
-   //  						<input type="hidden" name="_method" value="DELETE">
-   //  						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-    					
-   //  						<input class='delete' type="submit" onclick="return(confirm('Bạn có chắc muốn xóa'))" value='X'>
-    						
-   //  						</form>
-
 			?>
 
 </div>

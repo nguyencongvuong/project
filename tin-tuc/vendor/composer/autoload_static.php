@@ -316,6 +316,7 @@ class ComposerStaticInitbfafb65d0c03e5d5856164e7776f7054
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\Backend\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/NewsController.php',
         'App\\Http\\Controllers\\Backend\\TaxonomyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/TaxonomyController.php',
         'App\\Http\\Controllers\\CheckController' => __DIR__ . '/../..' . '/app/Http/Controllers/CheckController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',

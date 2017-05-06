@@ -10,7 +10,7 @@ class TaxonomyNews extends Model
     use SoftDeletes;
     protected $fillable=['parent'];
     protected $table='taxonomy_news';
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     public static function parents(){
     	$flight=TaxonomyNews::all();
     	return TaxonomyNews::withTrashed()->get();;
