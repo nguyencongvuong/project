@@ -8,8 +8,8 @@
                       <div class="content-panel">
                           <table class="table table-striped table-advance table-hover">
                           <a href="{{route('news.create')}}"><button type="button" class="btn btn-primary active">Thêm Bài Mới</button></a>
-	                  	  	  @if(session('news'))<div class='btn alert-success'><i class="fa fa-angle-right"></i> {{session('news')}} </div>@endif
-	                  	  	  <hr>
+                            @if(session('news'))<div class='btn alert-success'><i class="fa fa-angle-right"></i> {{session('news')}} </div>@endif
+                            <hr>
                               <thead>
                               <tr>
                                   <th class='col-md-4'><i class="fa fa-bullhorn"></i> Tiêu Đề</th>
@@ -22,26 +22,31 @@
                               <tbody>
                               <?php
                               $datas= json_decode($datas,true);
+                              echo "<pre>";
+                              // var_dump();
+                              // die();
                               ?>
                               @foreach($datas as $key=>$value)
                               <tr>
                                   <td><a href="basic_table.html#">{{$value['tieude']}}</a></td>
+
                                   <td class="hidden-phone">{{$value['mota']}}</td>
-                                  <td><?php echo ($value['category'][0]['title'])?> </td>
+
+                                  <td>@if($value['category'])<?php echo ($value['category'][0]['title'])?> @endif</td>
                                   <td>@if($value['status']==1)<span class="label label-info label-mini">publish</span>
                                   @elseif($value['status']==2)
-                                  	<span class="label label-danger">Draft</span>
-									@else
-									<span class="label label-warning ">waiting</span>
+                                    <span class="label label-danger">Draft</span>
+                  @else
+                  <span class="label label-warning ">waiting</span>
                                   @endif</td>
                                   <td>
                                   <form id='edit' action='' method='get'>
                                   {{csrf_field()}}
-                                  	
+                                    
                                   </form>
                                   <form id='delete' action='' method='post'>
                                   {{csrf_field()}}
-                                  		<input type='hidden' name="_method" value="delete"/>
+                                      <input type='hidden' name="_method" value="delete"/>
                                   </form>
                                  
                                       <button class="btn btn-success btn-xs" ><i class="fa fa-check"></i></button>
@@ -56,6 +61,6 @@
                       </div><!-- /content-panel -->
                   </div><!-- /col-md-12 -->
               </div><!-- /row -->
-    	</section>
+      </section>
 </section>
 @endsection

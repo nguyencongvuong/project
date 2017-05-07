@@ -18,8 +18,8 @@
                           <span>Thùng Rác</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="calendar.html">News</a></li>
-                          <li><a  href="gallery.html">Category</a></li>
+                          <li><a  href="{{url('')}}/admin/trash/news">News</a></li>
+                          <li><a  href="{{url('')}}/admin/trash/category">Category</a></li>
                       </ul>
                   </li>
                   <!-- <li class="sub-menu">

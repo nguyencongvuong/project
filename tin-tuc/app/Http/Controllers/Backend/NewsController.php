@@ -126,7 +126,7 @@ class NewsController extends Controller
     {
         $news=news::find($id);
         $news->delete();
-        return redirect()->back()->with('news','Bạn vừa xóa bài viết'.$news->tieude);
+        return redirect()->back()->with('news','Bạn vừa xóa bài viết: '.$news->tieude);
        
     }
 }

@@ -23,8 +23,10 @@ Route::group(['prefix'=>'/'],function(){
 Route::group(['middleware'=>'auth'],function(){
 	Route::resource('admin/category','Backend\TaxonomyController');
 	Route::resource('admin/news','Backend\NewsController');
+	Route::resource('admin/trash','Backend\TrashController');
 	Route::group(['prefix'=>'admin'],function(){
 		Route::get('/','CheckController@index');
+		
 		});
 });
 

@@ -31,7 +31,7 @@ $(document).ready(function(){
 						<input type="text" name="title" class='col-xs-12 form-control'>
 						<br>
 						<label for="">Description</label>
-						<input type="text" name="title" class='col-xs-12 form-control'><br>
+						<input type="text" name="description" class='col-xs-12 form-control'><br>
 							<?php 
 						// echo "<pre>";
 						// var_dump($datas['category']);
