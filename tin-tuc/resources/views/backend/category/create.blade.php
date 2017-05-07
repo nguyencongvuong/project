@@ -28,10 +28,10 @@ $(document).ready(function(){
                   		{{$value}}
                   		@endforeach
                   		@endif
-						<input type="text" name="title" class='col-xs-12'>
+						<input type="text" name="title" class='col-xs-12 form-control'>
 						<br>
 						<label for="">Description</label>
-						<input type="text" name="description" class='col-xs-12'><br>
+						<input type="text" name="title" class='col-xs-12 form-control'><br>
 							<?php 
 						// echo "<pre>";
 						// var_dump($datas['category']);
@@ -41,7 +41,8 @@ $(document).ready(function(){
 						// 	$key++;
 						// }
 						?>
-						<select name="parent">
+						 <label for="sel1">Chuyên Mục Cha:</label>
+						<select name="parent" class="form-control" id='sel1'>
 							<option value="0">Parents</option>
 							@foreach($datas['category'] as $value)
 							<option value="{{$value->id}}">{{$value->title}}</option>

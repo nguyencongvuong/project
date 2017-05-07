@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('slug',255)->nullable();
             $table->text('mota');
             $table->longtext('noidung');
+            $table->softDeletes();
             $table->string('chuyenmuc',255);
             $table->integer('status');
             $table->timestamps();

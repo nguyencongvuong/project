@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
+use App\Http\Requests\CreateFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News;
 use App\TaxonomyNews;
+use Validator;
 class NewsController extends Controller
 {
     /**
@@ -44,19 +45,18 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateFormRequest $request)
     {
-
         $news=new News();
         $news->tieude=$request->input('title');
         $news->mota=$request->input('description');
         $news->noidung=$request->input('content');
         $news->chuyenmuc=$request->category;
-        $news->status=$request->submit;
+        $news->status=$request->status;
         $save=$news->save();
         $last_id=$news->id;
         if($save){
-       $stt=$this->AfterSave($last_id,$request->input('title'),$request->input('description'),$request->input('content'),$request->category,$request->submit);
+       $stt=$this->AfterSave($last_id,$request->input('title'),$request->input('description'),$request->input('content'),$request->category,$request->status);
            
         }
         return redirect()->back()->with('thongbao','Bạn đã thêm thành công một bài viết: '.$request->input('title'));
@@ -111,6 +111,7 @@ class NewsController extends Controller
         $news->noidung=$request->input('content');
         $news->mota=$request->input('description');
         $news->chuyenmuc=$request->category;
+        $news->status=$request->status;
         $news->save();
         return redirect()->back()->with('Bạn vừa chỉnh sửa bài viết');
     }
@@ -125,6 +126,7 @@ class NewsController extends Controller
     {
         $news=news::find($id);
         $news->delete();
-        return redirect()->back()->with('news','Bạn vừa xóa bài viết'.$news);
+        return redirect()->back()->with('news','Bạn vừa xóa bài viết'.$news->tieude);
+       
     }
 }

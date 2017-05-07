@@ -20,9 +20,9 @@ $(document).ready(function(){
 					
 						<label for="">Title</label>
 
-						<input type="text" name="title" class='col-xs-12' value='{{$category['title']}}'><br>
+						<input type="text" name="title" class='col-xs-12 form-control' value='{{$category['title']}}'><br>
 						<label for="">Description</label>
-						<input type="text" name="description" value="{{$category['description']}}" class='col-xs-12'><br>
+						<input type="text" name="title" class='col-xs-12 form-control' value="{{$category['description']}}" class='col-xs-12'><br>
 						<input type="hidden" name="_method" value="PUT">
     					
 							<?php 
@@ -35,7 +35,8 @@ $(document).ready(function(){
 						// }
 						// var_dump($parent);
 						?>
-						<select name="parent">
+						<label for="sel1">Chuyên Mục Cha:</label>
+						<select name="parent" class="form-control">
 							<option value="0">Parent</option>
 							@foreach($datas['category'] as $value)
 								@if($value->id!=$id)

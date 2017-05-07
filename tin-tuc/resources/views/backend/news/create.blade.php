@@ -11,6 +11,13 @@
 	                 @if(session('thongbao'))
 	                 <div class="alert alert-success">{{session('thongbao')}}</div>
 	                 @endif
+	                 @if($errors)
+	                 	@foreach($errors->all() as $error)
+								<div class="alert alert-danger">
+								  {{$error}}
+								</div>
+	                 	@endforeach
+	                 @endif
                   	<?php        	
                   	?>
                   	@if(!isset($datas))
@@ -43,39 +50,41 @@
 			<h1>Chuyên Mục</h1>
 			<?php
 				$categories=App\TaxonomyNews::OrderBy('created_at','desc')->get();
-			function dequy($array,$parent=0,$check){
-		$child=[];
-		foreach($array as $key=>$item){
-			if($item['parent']==$parent){
+				function dequy($array,$parent=0,$check){
+				$child=[];
+				foreach($array as $key=>$item){
+				if($item['parent']==$parent){
 				$child[]=$item;
 				unset($array[$key]);
-			}
+				}
 			?>
 			
 			<?php
-			foreach($child as $key=>$c){
-				echo "<ul><li>";
-				?>
-				<input type="checkbox" name="category" <?php if($c['id']==$check){echo "checked";}?>  value="{{$c['id']}}">{{$c['title']}}</li>
-				<?php
-				dequy($array,$c['id'],$check);
-				echo "</ul>";
-				unset($child[$key]);
-			}	
+				foreach($child as $key=>$c)
+				{
+					echo "<ul><li>";
+					?>
+					<input type="checkbox" name="category" <?php if($c['id']==$check){echo "checked";}?>  value="{{$c['id']}}">{{$c['title']}}</li>
+					<?php
+					dequy($array,$c['id'],$check);
+					echo "</ul>";
+					unset($child[$key]);
+				}	
 		}
 	}
 			dequy($categories,$parent=0,$check=$value['chuyenmuc']);
 			?>
-			@endforeach
+			
 			</div>
 			
 	</div>
-
-	<button type='submit' name='submit' value='1' class="btn btn-default">Post & Publish</button>
-
-	<button type='submit' name='submit' value="2" class="btn btn-default">Post & Draft</button>
-
-	</form>
-	
+			<select name="status">
+			<option value="2" @if(isset($value['status'])&&$value['status']==2) selected @endif>Draft</option>
+			<option value="1" @if(isset($value['status'])&&$value['status']==1) selected @endif>Publish</option>
+			</select>
+			@endforeach
+			<button type='submit' name='submit' class="btn btn-default">Đăng Bài</button>	
+		</form>
+		
 </section>
 @endsection

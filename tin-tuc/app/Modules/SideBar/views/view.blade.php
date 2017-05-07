@@ -1,5 +1,5 @@
 <?php
-			$result=DB::table('taxonomy_news')->get();
+			$result=DB::table('taxonomy_news')->where('deleted_at',null)->get();
 			$categories=json_decode(json_encode($result), true);
 
 	function showCategories($categories, $parent_id = 0, $char = '', $stt = 0)

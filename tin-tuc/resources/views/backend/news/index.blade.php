@@ -7,6 +7,7 @@
                   <div class="col-md-12">
                       <div class="content-panel">
                           <table class="table table-striped table-advance table-hover">
+                          <a href="{{route('news.create')}}"><button type="button" class="btn btn-primary active">Thêm Bài Mới</button></a>
 	                  	  	  @if(session('news'))<div class='btn alert-success'><i class="fa fa-angle-right"></i> {{session('news')}} </div>@endif
 	                  	  	  <hr>
                               <thead>
@@ -38,15 +39,15 @@
                                   {{csrf_field()}}
                                   	
                                   </form>
-                                  <form id='delete' action='{{url("")}}/admin/news/<?php echo $value["id"];?>' method='post'>
+                                  <form id='delete' action='' method='post'>
                                   {{csrf_field()}}
                                   		<input type='hidden' name="_method" value="delete"/>
                                   </form>
                                  
                                       <button class="btn btn-success btn-xs" ><i class="fa fa-check"></i></button>
                                       <button class="btn btn-primary btn-xs" formaction='{{url("")}}/admin/news/<?php echo $value["id"];?>/edit' form='edit'><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs" form='delete' 
-                                      onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"><i class="fa fa-trash-o "></i></button>
+                                      <button class="btn btn-danger btn-xs" formaction='{{url("")}}/admin/news/<?php echo $value["id"];?>' form='delete' 
+                                      onclick="return(confirm('Bạn có chắc chắn xóa bài viết này không?'));"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr>
                               @endforeach

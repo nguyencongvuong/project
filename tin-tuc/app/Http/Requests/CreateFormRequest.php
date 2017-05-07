@@ -13,7 +13,7 @@ class CreateFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class CreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required'
+            'title'=>'required|max:255',
+            'category'=>'required',
+            'content'=>'required'
         ];
     }
+    public function messages()
+{
+        return [
+            'title.required' => 'Bạn chưa nhập tiêu đề',
+            'title.max'  =>'Bạn nhập quá 255 ký tự',
+            'content.required'  => 'Bạn chưa nhập nội dung',
+            'category.required' =>'Hãy nhập chuyên mục'
+        ];
+}
+      
 }
