@@ -69,7 +69,7 @@
                               @else
                              <td colspan="5">Thùng Rác Trống</td>
                               @endif
-
+                              
                               </tbody>
                           </table>
                       </div><!-- /content-panel -->

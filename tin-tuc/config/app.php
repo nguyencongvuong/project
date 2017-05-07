@@ -39,7 +39,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', true),
-
+    'time_empty'=>60*60*30,// Seconds
     /*
     |--------------------------------------------------------------------------
     | Application URL

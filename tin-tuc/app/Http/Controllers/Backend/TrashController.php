@@ -50,6 +50,7 @@ class TrashController extends Controller
      */
     public function show($type)
     {
+    	$news=new News();
         if($type=='category'){
         	$datas=TaxonomyNews::withTrashed()->where('deleted_at','<>',null)->get();
         	foreach ($datas as $key=>$value){
@@ -131,6 +132,8 @@ class TrashController extends Controller
     		}else{
     			return redirect()->back()->with('news',"Thùng rác Trống không có gì để xóa");
     		}
+    		return Carbon::now();
+    		die();
     		
     	}
     	
